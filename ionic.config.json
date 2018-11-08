@@ -1,0 +1,7 @@
+{
+  "name": "ControlMoney",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular"
+}
