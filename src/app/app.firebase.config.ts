@@ -1,11 +1,11 @@
 
 export const FIREBASE_CONFIG = {
-	fire: {
-    apiKey: "AIzaSyDPCSK3WGOQbg5YpGKCmnAs40IwWJN8jlU",
-    authDomain: "login-32f55.firebaseapp.com",
-    databaseURL: "https://login-32f55.firebaseio.com",
-    projectId: "login-32f55",
-    storageBucket: "login-32f55.appspot.com",
-    messagingSenderId: "893504205331"
-	}
+    apiKey: "AIzaSyB37wCBVjmzsyFOD_9RrYJ_p4tqwGtUxdk",
+    authDomain: "controlmoney-ee03c.firebaseapp.com",
+    databaseURL: "https://controlmoney-ee03c.firebaseio.com",
+    projectId: "controlmoney-ee03c",
+    storageBucket: "controlmoney-ee03c.appspot.com",
+    messagingSenderId: "737506578122"
+	
 };
+

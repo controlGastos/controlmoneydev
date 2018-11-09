@@ -12,16 +12,7 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 
-const fbCOnfig={
-  fire: {
-    apiKey: "AIzaSyB37wCBVjmzsyFOD_9RrYJ_p4tqwGtUxdk",
-    authDomain: "controlmoney-ee03c.firebaseapp.com",
-    databaseURL: "https://controlmoney-ee03c.firebaseio.com",
-    projectId: "controlmoney-ee03c",
-    storageBucket: "controlmoney-ee03c.appspot.com",
-    messagingSenderId: "737506578122"
-	}
-};
+
 
 @NgModule({
   declarations: [
@@ -33,8 +24,9 @@ const fbCOnfig={
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    AngularFireAuthModule,
-    AngularFireModule.initializeApp(fbCOnfig)
+    AngularFireModule.initializeApp(FIREBASE_CONFIG),
+    AngularFireAuthModule
+   
   ],
   bootstrap: [IonicApp],
   entryComponents: [

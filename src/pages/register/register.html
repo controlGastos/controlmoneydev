@@ -11,13 +11,13 @@
     </div>
 
     <!-- Login form -->
-    <form class="list-form">
+    <form class="list-form" [formGroup]="SignUpForm" (ngSubmit)="register()"  >
       <ion-item>
         <ion-label floating>
           <ion-icon name="person" item-start class="text-primary"></ion-icon>
           Nombre Completo
         </ion-label>
-        <ion-input type="text"></ion-input>
+        <ion-input type="text" formControlName="name"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -25,7 +25,7 @@
           <ion-icon name="mail" item-start class="text-primary"></ion-icon>
           Email
         </ion-label>
-        <ion-input type="email"></ion-input>
+        <ion-input type="email" formControlName="email"></ion-input>
       </ion-item>
 
       <ion-item>
@@ -33,15 +33,16 @@
           <ion-icon name="lock" item-start class="text-primary"></ion-icon>
           Contraseña
         </ion-label>
-        <ion-input type="password"></ion-input>
+        <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
+      <button ion-button block color="dark" tappable type="submit" [disabled]="!SignUpForm.valid">
+        REGISTRARSE
+      </button>
     </form>
 
     <div margin-top>
-      <button ion-button block color="dark" tappable (click)="register()">
-        REGISTRARSE
-      </button>
-
+    
+<!-- 
       <p text-center ion-text color="secondary">O Registrate con:</p>
 
       <ion-grid>
@@ -62,12 +63,12 @@
             </button>
           </ion-col>
         </ion-row>
-      </ion-grid>
+      </ion-grid> -->
     </div>
 
     <!-- Other links -->
     <div text-center margin-top>
-      <span ion-text color="primary" tappable (click)="login()">ya tengo una cuenta</span>
+      <span ion-text color="primary" tappable (click)="login()"><u>ya tengo una cuenta.</u></span>
     </div>
 
   </div>

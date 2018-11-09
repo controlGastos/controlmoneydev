@@ -28,14 +28,14 @@
         </ion-label>
         <ion-input type="password" formControlName="password"></ion-input>
       </ion-item>
+      <p text-right ion-text color="secondary" tappable (click)="forgotPass()"><strong><u>¿Olvidaste tu Clave?</u></strong></p>
+      
       <button ion-button icon-start block color="dark" tappable  type="submit" [disabled]="!loginForm.valid">
         <ion-icon name="log-in"></ion-icon>
         ENTRAR
       </button>
     </form>
-
-    <p text-right ion-text color="secondary" tappable (click)="forgotPass()"><strong>¿Olvidaste tu Clave?</strong></p>
-
+<!-- 
     <div>
 
 
@@ -61,12 +61,12 @@
         </ion-row>
       </ion-grid>
 
-    </div>
+    </div> -->
 
 
     <!-- Other links -->
     <div text-center margin-top>
-      <span ion-text color="secondary" tappable (click)="register()">¿Nuevo aqui? <strong>Registrate</strong></span>
+      <span ion-text color="secondary" tappable (click)="register()">¿Nuevo aqui?<u><strong>Registrate</strong></u></span>
     </div>
 
   </div>
