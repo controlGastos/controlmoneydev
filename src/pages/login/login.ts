@@ -1,11 +1,20 @@
 import { user } from './../../models/user';
 import { AngularFireAuth } from 'angularfire2/auth';
 import {Component} from "@angular/core";
-import {NavController, AlertController, ToastController, MenuController} from "ionic-angular";
+import {NavController, AlertController, ToastController, MenuController, LoadingController} from "ionic-angular";
 import {HomePage} from "../home/home";
 import {RegisterPage} from "../register/register";
 import {Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { NativeStorage } from '@ionic-native/native-storage';
+
 import * as firebase from 'firebase/app';
+
+interface FsUsers{
+  name: string;
+  email: string;
+  uid:string;  
+  id?:string;
+};
 
 @Component({
   selector: 'page-login',
@@ -14,6 +23,7 @@ import * as firebase from 'firebase/app';
 export class LoginPage {
 
   user = {} as user;
+
 
   public  loginForm: FormGroup;
 
@@ -24,7 +34,9 @@ export class LoginPage {
               public nav: NavController,
               public forgotCtrl: AlertController,
               public menu: MenuController,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController,
+              private loadingCtrl: LoadingController,
+              private nativeStorage: NativeStorage) {
 
               
 
@@ -38,14 +50,6 @@ export class LoginPage {
     this.menu.swipeEnable(false);
   }
 
-  ionViewWillEnter(){
-    
-    
-    
-   
-        
-  };
-
   // go to register page
   register() {
   this.nav.setRoot(RegisterPage);
@@ -53,6 +57,12 @@ export class LoginPage {
 
   // login and go to home page
    async login() {
+
+    let loading = this.loadingCtrl.create({
+      content: 'Espera...'
+    });
+
+
 
     this.user = this.loginForm.value;
 
@@ -65,11 +75,23 @@ export class LoginPage {
 			password: this.user.password
     };
     try {
+       loading.present(); 
+
        this.afAuth.auth.signInWithEmailAndPassword(credentials.email,credentials.password).then((data)=>{
-        this.nav.setRoot(HomePage);
-        console.log(data);
+
+        this.nativeStorage.setItem('uid',data.user.uid).then(()=>{
+          
+          this.nav.setRoot(HomePage);
+
+          loading.dismiss();
+  
+          console.log(data);
+        })
+
+        
        },
       err=>{
+        loading.dismiss();
         console.log(typeof(err));
 
         switch (err.code){
@@ -89,6 +111,7 @@ export class LoginPage {
       });
 
     } catch (error) {
+      loading.dismiss();
       console.log(error);
     }
     	
@@ -100,7 +123,7 @@ export class LoginPage {
       duration: 3000,
       position: 'bottom'
     });
-    toast.present();
+    toast.present(); 
   }
 
   forgotPass() {

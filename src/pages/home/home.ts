@@ -1,38 +1,34 @@
-import { ToastController } from 'ionic-angular';
+import { NativeStorage } from '@ionic-native/native-storage';
 import { LoginPage } from './../login/login';
+import { AngularFireAuth } from 'angularfire2/auth';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AngularFireAuth } from 'angularfire2/auth';
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
 
-  constructor(private afAuth: AngularFireAuth,public navCtrl: NavController, private toastCtrl : ToastController) {
+  constructor(public navCtrl: NavController,
+               private afs : AngularFireAuth,
+               private nativeStorage: NativeStorage) {
+
+
+
+// this.nativeStorage.getItem('uid').then(res=>{
+//   console.log(res);
+// });
 
   }
 
- ionViewDidLoad(){
-   this.afAuth.user.subscribe(user =>{
-     console.log(user);
-     this.presentToast("Hola " +user.email)
-     
-   })
- }
+  incomePost(){
 
- logOut(){
-   this.afAuth.auth.signOut().then(()=>{
-     this.navCtrl.setRoot(LoginPage);
-   })
- };
+  }
+  logOut(){
+    this.afs.auth.signOut().then(()=>{
+      this.navCtrl.setRoot(LoginPage);
+    })
+  }
 
- presentToast(msj : string){
-  let toast = this.toastCtrl.create({
-    message: msj,
-    duration: 3000,
-    position: 'bottom'
-  });
-  toast.present();
-}
 }
