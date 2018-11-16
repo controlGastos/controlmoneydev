@@ -1,20 +1,36 @@
 <ion-menu [content]="mycontent">
         <ion-header>
-                <ion-toolbar>
-                  <ion-title>Menu</ion-title>
-                </ion-toolbar>
+                  <ion-item color="dark">
+                      <ion-avatar item-start>
+                          <img src="../assets/imgs/avatar-ts-woody.png">
+                        </ion-avatar>
+                        <h2>Hola, Usuario</h2>
+                        <p  style="color: white">Bienvenido a Control Money</p>
+                  </ion-item>
+              
               </ion-header>
             
               <ion-content>
                 <ion-list>
-                  <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
-                    {{p.title}}
-                  </button>
+                      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)" icon-start >
+                          <ion-icon name="{{p.icon}}"></ion-icon>
+                          {{p.title}}
+                        </button>
+                  
+                  
                 </ion-list>
+                <hr>
+                <div text-center>
+                  <button ion-button icon-only large  menuToggle  (click)="logOut()">
+                    <ion-icon name="power"></ion-icon>
+                  </button>                 
+
+                </div>
+<!--                 
                 <button ion-button icon-start block  color="dark" tappable menuToggle  (click)="logOut()">
                         <ion-icon name="log-out"></ion-icon>
                         LogOut
-                      </button>
+                      </button> -->
               </ion-content>
             
             </ion-menu>

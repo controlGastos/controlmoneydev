@@ -1,3 +1,17 @@
 page-incomes {
+    .bg{
+        background-image:url('../../assets/imgs/bg.jpg');
+      }
 
+      .input {
+        color: color($colors, light);
+      }
+
+      ion-label {
+        font-size: 1em;
+        color: color($colors, secondary)!important;
+      }
+      .total{
+        color: color($colors, light)!important;
+      }
 }

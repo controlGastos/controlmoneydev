@@ -1,15 +1,24 @@
-<ion-header>
-    <ion-navbar>
-        <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-          </button>
-      <ion-title>
+
+  <ion-header>
+    <ion-navbar color="dark">
+      <button ion-button icon-only menuToggle>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+  
+      <ion-title >
         Control Money
       </ion-title>
+  
+      <!-- <ion-buttons end>
+        <button ion-button icon-only (click)="openModal()">
+          <ion-icon name="home"></ion-icon>
+        </button>
+      </ion-buttons> -->
     </ion-navbar>
+  
   </ion-header>
 
-<ion-content padding>
+<ion-content padding >
 
 
 <ion-slides #slides effect="slide">
@@ -20,7 +29,7 @@
       <h3>Ingresos</h3>
       <form [formGroup]="incomeForm"  placeholder="1525" (ngSubmit)="incomePost()" class="list-form">
         <ion-item>
-          <ion-label fixed>
+          <ion-label fixed >
           <ion-icon name="cash" item-start class="text-primary"></ion-icon>
             Sueldo
         </ion-label>
@@ -150,7 +159,7 @@
                   Ingresos Totales
                 </ion-list-header>
                 <ion-item>
-                  <ion-label inline>
+                  <ion-label inline class="total">
                     <ion-icon name="logo-usd" item-start class="text-primary"></ion-icon>
                      {{totalIncomes | currency}}
                   </ion-label>
@@ -159,7 +168,7 @@
                     Egresos Totales
                   </ion-list-header>
                   <ion-item>
-                      <ion-label inline>
+                      <ion-label inline class="total">
                         <ion-icon name="trending-down" item-start class="text-primary"></ion-icon>
                          {{totalExpenses | currency }}
                       </ion-label>

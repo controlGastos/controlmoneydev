@@ -13,13 +13,13 @@ import { AhorroPage } from '../pages/ahorro/ahorro';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
   rootPage:any = LoginPage;
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any,icon:string}>;
   constructor(private afAuth: AngularFireAuth,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
 
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'Ingresos', component:IncomesPage },
-      { title: 'Ahorro', component:AhorroPage },
+      { title: 'Home', component: HomePage, icon:"home" },
+      { title: 'Ingresos', component:IncomesPage,icon:"logo-usd"  },
+      { title: 'Ahorro', component:AhorroPage,icon:"trending-down"  },
 
     ];
 

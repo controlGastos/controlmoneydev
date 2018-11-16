@@ -1,3 +1,5 @@
+import { EgresosAnualesPage } from './../pages/egresos-anuales/egresos-anuales';
+import { EgresosPage } from './../pages/egresos/egresos';
 import { IncomesPage } from './../pages/incomes/incomes';
 import { NativeStorage } from '@ionic-native/native-storage';
 
@@ -15,6 +17,7 @@ import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { AhorroPage } from '../pages/ahorro/ahorro';
+import { OtrosEgresosPage } from '../pages/otros-egresos/otros-egresos';
 
 
 
@@ -25,7 +28,10 @@ import { AhorroPage } from '../pages/ahorro/ahorro';
     LoginPage,
     RegisterPage,
     IncomesPage,
-    AhorroPage
+    AhorroPage,
+    EgresosPage,
+    EgresosAnualesPage,
+    OtrosEgresosPage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +48,10 @@ import { AhorroPage } from '../pages/ahorro/ahorro';
     LoginPage,
     RegisterPage,
     IncomesPage,
-    AhorroPage
+    AhorroPage,
+    EgresosPage,
+    EgresosAnualesPage,
+    OtrosEgresosPage
   ],
   providers: [
     StatusBar,

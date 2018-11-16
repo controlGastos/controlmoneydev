@@ -3,6 +3,10 @@
 // --------------------------------------------------
 
 // global styles
+.item.item-input {
+  background-color: transparent;
+}
+
 .primary-bg {
   background-color: color($colors, primary) !important;
 }
@@ -41,11 +45,11 @@
 //
 //
 .text-primary {
-  color: color($colors, primary);
+  color: color($colors, light);
 }
 
 .text-secondary {
-  color: color($colors, secondary);
+  color: color($colors, light);
 }
 
 .text-green {
@@ -297,7 +301,7 @@ ion-navbar.no-border {
 
 // style for auth pages
 .auth-page {
-  background-color: #fff;
+  background-color:color($colors,primary);
   &::after {
     content: "";
     background: url("../assets/img/bg.jpg") no-repeat;
@@ -346,16 +350,19 @@ ion-navbar.no-border {
 
           ion-label {
             font-size: 1em;
-            color: color($colors, primary);
+            color: color($colors, secondary);
           }
 
           input {
-            color: color($colors, primary);
+            color: color($colors, light);
           }
         }
       }
     }
   }
+}
+.total{
+  color: color($colors, light)!important;
 }
 
 // Menu user profile

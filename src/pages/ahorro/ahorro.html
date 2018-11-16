@@ -1,5 +1,5 @@
 <ion-header>
-    <ion-navbar>
+    <ion-navbar color="dark">
         <button ion-button menuToggle>
             <ion-icon name="menu"></ion-icon>
           </button>
@@ -15,7 +15,7 @@
       <hr>
       <form [formGroup]="projectForm" (ngSubmit)="projectPost()" class="list-form">
         <ion-item>
-          <ion-label floating>
+          <ion-label floating >
           <ion-icon name="car" item-start class="text-primary"></ion-icon>
             Nombre del proyecto
         </ion-label>
@@ -32,7 +32,7 @@
         <ion-list>
           <h3 text-left padding>Monto sugerido</h3>
           <ion-item>
-            <ion-label inline>
+            <ion-label inline class="total">
               <ion-icon name="logo-usd" item-start class="text-primary"></ion-icon>
                {{estimatedSaving | currency}}
             </ion-label>
