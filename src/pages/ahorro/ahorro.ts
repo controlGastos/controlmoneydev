@@ -1,5 +1,5 @@
 import { LoadingController } from 'ionic-angular';
-import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
+import { AngularFirestore, AngularFirestoreCollection,AngularFirestoreDocument } from 'angularfire2/firestore';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { LoginPage } from '../login/login';
 import { AngularFireAuth } from 'angularfire2/auth';
@@ -54,6 +54,11 @@ public projectForm: FormGroup;
   {
     this.uid = res;
     this.getExpenses();
+    let loading = this.loadinCtrl.create({content:"Cargando Informacion"});
+    loading.present();
+    setTimeout(()=>loading.dismiss(),2000);
+    this.projectCollection = this.afst.collection('projects',ref => ref.where('uid' ,'==',this.uid.toString()));
+    this.pjs = this.projectCollection.valueChanges();
 
   });
 
@@ -61,12 +66,9 @@ public projectForm: FormGroup;
 
   ionViewDidLoad()
   {
-    let loading = this.loadinCtrl.create({content:"Cargando Informacion"});
-    loading.present();
-    setTimeout(()=>loading.dismiss(),2000);
-    this.projectCollection = this.afst.collection('projects');
-    this.pjs = this.projectCollection.valueChanges();
+   
 
+    
   };
 
   //---------- Income function (Slide1) -----------//

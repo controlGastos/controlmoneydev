@@ -6,13 +6,37 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>egresos</ion-title>
+  <ion-navbar color="dark">
+      <button ion-button icon-only menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>Egresos</ion-title>
   </ion-navbar>
 
 </ion-header>
 
 
 <ion-content padding>
+   
 
+  <form [formGroup]="expenseForm" (ngSubmit)="expensePost()" class="list-form">
+    <ion-item *ngFor="let item of services" >
+      <ion-label inline>
+      <ion-icon name="{{item['icon']}}" item-start class="text-primary"></ion-icon>
+       {{item["title"]}}
+    </ion-label>
+    <ion-input type="number" formControlName="{{item['controlName']}}" ></ion-input>
+    </ion-item>
+
+    <button ion-button icon-start block color="dark" tappable  type="submit" [disabled]="!expenseForm.valid">
+        <ion-icon name="folder-open"></ion-icon>
+        Guardar
+      </button>
+     </form>
+     <!-- <div text-right>
+        <button ion-button icon-start  color="dark" tappable (click)="swipeNext()"   [disabled]="next">
+            <ion-icon name="walk"></ion-icon>
+            Siguiente
+          </button>
+    </div> -->
 </ion-content>

@@ -6,13 +6,58 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>otrosEgresos</ion-title>
+  <ion-navbar color="dark">
+      <button ion-button icon-only menuToggle>
+          <ion-icon name="menu"></ion-icon>
+        </button>
+    <ion-title>Otros Egresos</ion-title>
   </ion-navbar>
 
 </ion-header>
-
+s
 
 <ion-content padding>
+    <form [formGroup]="otherExpenseForm" (ngSubmit)="otherExpensePost()" class="list-form" *ngIf="!totalExpenses">
+        <ion-item *ngFor="let item of otherServices" >
+          <ion-label inline>
+          <ion-icon name="{{item['icon']}}" item-start class="text-primary"></ion-icon>
+           {{item["title"]}}
+        </ion-label>
+        <ion-input type="number" formControlName="{{item['controlName']}}" ></ion-input>
+        </ion-item>
 
+        <button ion-button icon-start block color="dark" tappable  type="submit" [disabled]="!otherExpenseForm.valid">
+            <ion-icon name="folder-open"></ion-icon>
+            Guardar
+          </button>
+         </form>
+         <div text-center padding *ngIf="totalExpenses" >
+            <ion-list>
+              <h2>Resumen</h2>
+                <ion-list-header>
+                   Ingresos Totales
+                 </ion-list-header>
+                 <ion-item>
+                   <ion-label inline class="total">
+                     <ion-icon name="logo-usd" item-start class="text-primary"></ion-icon>
+                      {{totalIncomes | currency}}
+                   </ion-label>
+                 </ion-item>
+                 <ion-list-header>
+                     Egresos Totales
+                   </ion-list-header>
+                   <ion-item>
+                       <ion-label inline class="total">
+                         <ion-icon name="trending-down" item-start class="text-primary"></ion-icon>
+                          {{totalExpenses | currency }}
+                       </ion-label>
+                     </ion-item>
+                     <hr>
+               </ion-list>
+               <button ion-button icon-start block color="dark" tappable (click)="next()" >
+                  <ion-icon name="arrow-dropright"></ion-icon>
+                  Siguiente
+                </button>
+         </div>
+  
 </ion-content>

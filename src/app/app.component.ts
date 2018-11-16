@@ -1,3 +1,7 @@
+import { OtrosEgresosPage } from './../pages/otros-egresos/otros-egresos';
+import { EgresosAnualesPage } from './../pages/egresos-anuales/egresos-anuales';
+import { EgresosPage } from './../pages/egresos/egresos';
+import { FormGroup } from '@angular/forms';
 import { LoginPage } from './../pages/login/login';
 import { HomePage } from './../pages/home/home';
 import { Component, ViewChild } from '@angular/core';
@@ -19,8 +23,11 @@ export class MyApp {
     this.pages = [
       { title: 'Home', component: HomePage, icon:"home" },
       { title: 'Ingresos', component:IncomesPage,icon:"logo-usd"  },
-      { title: 'Ahorro', component:AhorroPage,icon:"trending-down"  },
-
+      { title: 'Ahorro', component:AhorroPage,icon:"filing"  },
+      { title: 'Egresos', component:EgresosPage,icon:"trending-down"  },
+      { title: 'Egresos Anuales', component:EgresosAnualesPage,icon:"card"  },      
+      { title: 'Otros Egresos', component:OtrosEgresosPage,icon:"medkit"  }
+      
     ];
 
     platform.ready().then(() => {

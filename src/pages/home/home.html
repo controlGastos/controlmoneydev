@@ -9,9 +9,29 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding class="bg" >
-  <ion-item>
-    <label floating>Texto</label>
-  <ion-input type="text"></ion-input>
-  </ion-item>
+<ion-content padding  >
+    <ion-card>
+        <ion-card-header>
+          <ion-title>Vista General</ion-title>
+         
+        </ion-card-header>
+      
+        <ion-list>
+          <ion-item color="light">
+              <ion-icon name="arrow-dropright-circle" item-start color="income"></ion-icon>
+               
+              <p style="color: green"> Ingresos: </p> {{ totalIncomes | currency}}
+          </ion-item>   
+          <ion-item color="light">
+              <ion-icon name="arrow-dropright-circle" item-start color="expense"></ion-icon>
+              <p style="color: #990a0a"> Gastos: </p> {{totalExpenses | currency}}
+          </ion-item>  
+          <ion-item color="light">
+              <ion-icon name="arrow-dropright-circle" item-start color="primary"></ion-icon>
+              <p style="color: #004c8b"> Ahorro Sugerido: </p> {{estimatedSaving | currency}}
+          </ion-item>     
+         
+      
+        </ion-list>
+      </ion-card>
 </ion-content>
