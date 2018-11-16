@@ -129,7 +129,7 @@ public projectForm: FormGroup;
           let saldo1 = this.totalIncomes -this.totalExpenses
           let saldo2 = (30 * saldo1)/100;
 
-          this.estimatedSaving = saldo1 -saldo2
+          this.estimatedSaving = saldo2
 
         },err=>alert(err))
 

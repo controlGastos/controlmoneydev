@@ -144,6 +144,7 @@ public otherExpenseForm: FormGroup;
       this.incomeForm.reset();
       this.next = false;
       this.presentToast("Ingresos Guardados.");
+      this.slides.slideNext();
       })
 
   };
@@ -179,6 +180,7 @@ public otherExpenseForm: FormGroup;
       this.expenseForm.reset();
       this.next = false;
       this.presentToast("Egresos Guardados.");
+      this.slides.slideNext();
       })
   };
 
@@ -211,6 +213,7 @@ public otherExpenseForm: FormGroup;
       this.anualExpenseForm.reset();
       this.next = false;
       this.presentToast("Egresos anuales Guardados.");
+      this.slides.slideNext();
       })
   };
   //-------otherExpenses functions ----------//
@@ -243,6 +246,7 @@ public otherExpenseForm: FormGroup;
       this.otherExpenseForm.reset();
       this.next = false;
       this.presentToast(" otros Egresos  Guardados.");
+      this.slides.slideNext();
       })
   };
 
