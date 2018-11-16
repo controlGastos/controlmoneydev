@@ -39,7 +39,6 @@ public otherExpenseForm: FormGroup;
 {
 
 //------- validaciones campos de formularios --------//
-
   this.incomeForm = this.formBuilder.group(
   {
     salary:["",Validators.required],
@@ -69,7 +68,7 @@ public otherExpenseForm: FormGroup;
 
     this.otherExpenseForm = this.formBuilder.group(
       {
-        
+
         prepaidHealth:[],
         entertainment:[],
         clothing:[],
@@ -88,29 +87,29 @@ public otherExpenseForm: FormGroup;
 };
 
   ionViewDidLoad()
-  {   
-     
+  {
+
   this.services = [
     {title:"Agua",icon:'water', controlName:'water'},
     {title:"Electricidad",icon:'bulb', controlName:'electricity'},
-    {title:"Telefonia",icon:'call', controlName:'homePhone'},    
+    {title:"Telefonia",icon:'call', controlName:'homePhone'},
     {title:"Celular",icon:'phone-portrait', controlName:'cellPhone'},
-    {title:"Televisión",icon:'desktop', controlName:'tv'},    
-    {title:"Combos",icon:'logo-buffer', controlName:'combos'},    
+    {title:"Televisión",icon:'desktop', controlName:'tv'},
+    {title:"Combos",icon:'logo-buffer', controlName:'combos'},
   ];
   this.anualServices = [
     {title:"Imp. Predial",icon:'home', controlName:'propertyTax'},
     {title:"Imp. Vehicular",icon:'car', controlName:'carTax'},
-    {title:"SOAT",icon:'card', controlName:'soat'},    
+    {title:"SOAT",icon:'card', controlName:'soat'},
     {title:"Seg. todo riesgo",icon:'help-buoy', controlName:'insurance'}
   ];
   this.otherServices = [
-  
+
     {title:"Salud Prepagada",icon:'medkit', controlName:'prepaidHealth'},
     {title:"Entretenimiento",icon:'logo-playstation', controlName:'entertainment'},
-    {title:"Ropa",icon:'shirt', controlName:'clothing'},    
-    {title:"Alimentacion",icon:'pizza', controlName:'feeding'},    
-    {title:"Transporte",icon:'bus', controlName:'transport'},    
+    {title:"Ropa",icon:'shirt', controlName:'clothing'},
+    {title:"Alimentacion",icon:'pizza', controlName:'feeding'},
+    {title:"Transporte",icon:'bus', controlName:'transport'},
     {title:"Educacion",icon:'school', controlName:'education'}
   ];
     this.slides.lockSwipeToNext(true);
@@ -123,12 +122,12 @@ public otherExpenseForm: FormGroup;
   {
     let dataIncome =  this.incomeForm.value;
     let incomid = "income"+this.uid;
-    var docData = 
-    {     
-      salary : parseInt(dataIncome.salary),
-      prima :  parseInt(dataIncome.prima),
-      firstOther : parseInt(dataIncome.firstOther),
-      secondOther : parseInt(dataIncome.secondOther),
+    var docData =
+    {
+      salary : parseFloat(dataIncome.salary ),
+      prima :  parseFloat(dataIncome.prima),
+      firstOther : parseInt((dataIncome.firstOther == null ? 0 : dataIncome.firstOther)),
+      secondOther : parseInt(dataIncome.secondOther == null? 0 : dataIncome.secondOther),
       uid : this.uid.toString()
     }
 
@@ -136,8 +135,8 @@ public otherExpenseForm: FormGroup;
       {
       content:"Guardando Ingresos"
       })
-    loading.present(); 
-   
+    loading.present();
+
     this.afst.collection('incomes').doc(incomid).set(docData).then(result=>
       {
       console.log(result);
@@ -156,23 +155,23 @@ public otherExpenseForm: FormGroup;
 
     let dataExpense =  this.expenseForm.value;
     let expenseid = "expense"+this.uid;
-    var docData = 
-    {     
-      water:parseInt(dataExpense.water),
-      electricity:parseInt(dataExpense.electricity),
-      homePhone:parseInt(dataExpense.homePhone),
-      cellPhone:parseInt(dataExpense.cellPhone),
-      tv:parseInt(dataExpense.tv),
-      combos:parseInt(dataExpense.combos),
-      uid : this.uid.toString()      
+    var docData =
+    {
+      water:parseInt(dataExpense.water  == null? 0 : dataExpense.water),
+      electricity:parseInt(dataExpense.electricity == null? 0 :dataExpense.electricity),
+      homePhone:parseInt(dataExpense.homePhone== null? 0 :dataExpense.homePhone),
+      cellPhone:parseInt(dataExpense.cellPhone== null? 0 :dataExpense.cellPhone),
+      tv:parseInt(dataExpense.tv== null? 0 :dataExpense.tv),
+      combos:parseInt(dataExpense.combos== null? 0 :dataExpense.combos),
+      uid : this.uid.toString()
     }
 
     let loading = this.loadinCtrl.create(
       {
       content:"Guardando Egresos"
       })
-    loading.present(); 
-   
+    loading.present();
+
     this.afst.collection('expenses').doc(expenseid).set(docData).then(result=>
       {
       console.log(result);
@@ -189,22 +188,22 @@ public otherExpenseForm: FormGroup;
 
     let dataExpense =  this.anualExpenseForm.value;
     let expenseid = "anualExpense"+this.uid;
-    var docData = 
-    {     
+    var docData =
+    {
 
-      propertyTax:parseInt(dataExpense.propertyTax),
-      carTax:parseInt(dataExpense.carTax),
-      soat:parseInt(dataExpense.soat),
-      insurance:parseInt(dataExpense.insurance),      
-      uid : this.uid.toString()      
+      propertyTax:parseInt(dataExpense.propertyTax== null? 0 :dataExpense.propertyTax),
+      carTax:parseInt(dataExpense.carTax== null? 0 :dataExpense.carTax),
+      soat:parseInt(dataExpense.soat== null? 0 :dataExpense.soat),
+      insurance:parseInt(dataExpense.insurance== null? 0 :dataExpense.insurance),
+      uid : this.uid.toString()
     }
 
     let loading = this.loadinCtrl.create(
       {
       content:"Guardando Egresos anuales"
       })
-    loading.present(); 
-   
+    loading.present();
+
     this.afst.collection('anualExpenses').doc(expenseid).set(docData).then(result=>
       {
       console.log(result);
@@ -220,23 +219,23 @@ public otherExpenseForm: FormGroup;
 
     let dataExpense =  this.otherExpenseForm.value;
     let expenseid = "otherExpense"+this.uid;
-    var docData = 
-    {     
-        prepaidHealth:parseInt(dataExpense.prepaidHealth),
-        entertainment:parseInt(dataExpense.entertainment),
-        clothing:parseInt(dataExpense.clothing),
-        feeding:parseInt(dataExpense.feeding),    
-        transport:parseInt(dataExpense.transport),
-        education:parseInt(dataExpense.education),   
-      uid : this.uid.toString()      
+    var docData =
+    {
+        prepaidHealth:parseInt(dataExpense.prepaidHealth== null? 0 :dataExpense.prepaidHealth),
+        entertainment:parseInt(dataExpense.entertainment== null? 0 :dataExpense.entertainment),
+        clothing:parseInt(dataExpense.clothing== null? 0 :dataExpense.clothing),
+        feeding:parseInt(dataExpense.feeding== null? 0 :dataExpense.feeding),
+        transport:parseInt(dataExpense.transport== null? 0 :dataExpense.transport),
+        education:parseInt(dataExpense.education== null? 0 :dataExpense.education),
+      uid : this.uid.toString()
     }
 
     let loading = this.loadinCtrl.create(
       {
       content:"Guardando otros Egresos "
       })
-    loading.present(); 
-   
+    loading.present();
+
     this.afst.collection('otherExpenses').doc(expenseid).set(docData).then(result=>
       {
       console.log(result);
@@ -248,6 +247,38 @@ public otherExpenseForm: FormGroup;
   };
 
 
+  // -------- Get Functions -----------//ç
+
+  getIncomes(){
+
+    let refId = "income"+this.uid;
+    let incomesRef = this.afst.collection('incomes').doc(refId);
+    incomesRef.get().subscribe(res =>{
+
+      let data = res.data();
+      this.totalIncomes = data.salary + data.prima + data.firstOther + data.secondOther;
+
+
+    })
+  }
+   async getExpenses(){
+
+    let expenses = this.afst.collection('expenses').doc( "expense"+this.uid);
+    let OtherExpenses = this.afst.collection('otherExpenses').doc( "otherExpense"+this.uid);
+    let anualExpenses = this.afst.collection('anualExpenses').doc( "anualExpense"+this.uid);
+
+    expenses.get().subscribe(res =>{
+      let data = res.data();
+      this.totalExpenses = data.cellPhone + data.combos + data.electricity + data.homePhone+ data.tv+ data.water; },err=>alert(err))
+      OtherExpenses.get().subscribe(res =>{
+        let data = res.data();
+        this.totalExpenses += data.clothing + data.education + data.entertainment + data.prepaidHealth+ data.transport},err=>alert(err))
+        anualExpenses.get().subscribe(res =>{
+          let data = res.data();
+          this.totalExpenses += data.carTax + data.insurance + data.propertyTax + data.soat},err=>alert(err))
+
+    }
+  // --------  -----------//
 
 
 
@@ -258,10 +289,16 @@ public otherExpenseForm: FormGroup;
     })
   };
 
-  swipeNext(){
+  swipeNext(resume?:boolean){
+    if (resume) {
+      this.getExpenses();
+      this.getIncomes();
+
+   }
     this.slides.lockSwipeToNext(false);
     this.slides.slideNext(1000);
     this.slides.lockSwipeToNext(true);
+
   }
 
   presentToast(msj : string){

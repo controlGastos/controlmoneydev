@@ -6,6 +6,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { IncomesPage } from '../pages/incomes/incomes';
+import { AhorroPage } from '../pages/ahorro/ahorro';
 @Component({
   templateUrl: 'app.html'
 })
@@ -14,16 +15,18 @@ export class MyApp {
   rootPage:any = LoginPage;
   pages: Array<{title: string, component: any}>;
   constructor(private afAuth: AngularFireAuth,platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
-   
+
     this.pages = [
       { title: 'Home', component: HomePage },
-      { title: 'Ingresos', component:IncomesPage }
+      { title: 'Ingresos', component:IncomesPage },
+      { title: 'Ahorro', component:AhorroPage },
+
     ];
 
     platform.ready().then(() => {
-     
+
       this.afAuth.authState.subscribe(user => {
-       
+
         if(user !== null){
           this.rootPage = HomePage;
         }

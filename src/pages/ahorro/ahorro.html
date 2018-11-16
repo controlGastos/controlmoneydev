@@ -1,0 +1,77 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+      <ion-title>
+       Ahorro
+      </ion-title>
+    </ion-navbar>
+  </ion-header>
+
+<ion-content padding  >
+
+      <h3 text-left>Proyectos</h3>
+      <hr>
+      <form [formGroup]="projectForm" (ngSubmit)="projectPost()" class="list-form">
+        <ion-item>
+          <ion-label floating>
+          <ion-icon name="car" item-start class="text-primary"></ion-icon>
+            Nombre del proyecto
+        </ion-label>
+        <ion-input   type="text" formControlName="name" ></ion-input>
+        </ion-item>
+        <ion-item>
+
+            <ion-label floating>
+          <ion-icon name="cash" item-start class="text-primary"></ion-icon>
+          Monto mensual dispuesto a ahorrar
+        </ion-label>
+        <ion-input type="number" formControlName="ammount" ></ion-input>
+        </ion-item>
+        <ion-list>
+          <h3 text-left padding>Monto sugerido</h3>
+          <ion-item>
+            <ion-label inline>
+              <ion-icon name="logo-usd" item-start class="text-primary"></ion-icon>
+               {{estimatedSaving | currency}}
+            </ion-label>
+          </ion-item>
+        </ion-list>
+
+        <button ion-button icon-start block color="dark" tappable  type="submit" [disabled]="!projectForm.valid">
+            <ion-icon name="folder-open"></ion-icon>
+            Guardar
+          </button>
+         </form>
+         <hr>
+         <h2>Lista de Proyectos</h2>
+         <ion-grid>
+            <ion-row justify-content-end>
+              <ion-col col-6 class="border">
+                <strong>Nombre </strong>
+              </ion-col>
+              <ion-col col-6 class="border">
+                <strong>Ahorro dispuesto </strong>
+              </ion-col>
+            </ion-row >
+            <ion-row *ngFor="let item of pjs | async" >
+              <ion-col>
+               {{item.name}}
+              </ion-col>
+              <ion-col>
+                {{item.ammount | currency}}
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+
+         <!-- <div text-right>
+
+            <button ion-button icon-start  color="dark" tappable (click)="swipeNext()"   [disabled]="next">
+                <ion-icon name="walk"></ion-icon>
+                Siguiente
+              </button>
+        </div> -->
+
+
+</ion-content>

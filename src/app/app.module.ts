@@ -14,6 +14,7 @@ import { HomePage } from '../pages/home/home';
 import { LoginPage } from '../pages/login/login';
 import { RegisterPage } from '../pages/register/register';
 import { FIREBASE_CONFIG } from './app.firebase.config';
+import { AhorroPage } from '../pages/ahorro/ahorro';
 
 
 
@@ -23,7 +24,8 @@ import { FIREBASE_CONFIG } from './app.firebase.config';
     HomePage,
     LoginPage,
     RegisterPage,
-    IncomesPage
+    IncomesPage,
+    AhorroPage
   ],
   imports: [
     BrowserModule,
@@ -31,7 +33,7 @@ import { FIREBASE_CONFIG } from './app.firebase.config';
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
     AngularFirestoreModule
-   
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -39,7 +41,8 @@ import { FIREBASE_CONFIG } from './app.firebase.config';
     HomePage,
     LoginPage,
     RegisterPage,
-    IncomesPage
+    IncomesPage,
+    AhorroPage
   ],
   providers: [
     StatusBar,

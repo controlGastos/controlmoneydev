@@ -14,17 +14,17 @@
 
 <ion-slides #slides effect="slide">
      <ion-slide>
-        
+
       <h2>Paso 1</h2>
         <hr>
       <h3>Ingresos</h3>
-      <form [formGroup]="incomeForm" (ngSubmit)="incomePost()" class="list-form">
+      <form [formGroup]="incomeForm"  placeholder="1525" (ngSubmit)="incomePost()" class="list-form">
         <ion-item>
-          <ion-label floating>
+          <ion-label fixed>
           <ion-icon name="cash" item-start class="text-primary"></ion-icon>
             Sueldo
         </ion-label>
-        <ion-input type="number" formControlName="salary" ></ion-input>
+        <ion-input   type="number" formControlName="salary" ></ion-input>
         </ion-item>
 
         <h3>Ingresos Semestrales</h3>
@@ -43,7 +43,7 @@
           <ion-icon name="logo-usd" item-start class="text-primary"></ion-icon>
             1
         </ion-label>
-        <ion-input type="number" formControlName="firstOther" ></ion-input>
+        <ion-input  type="number" formControlName="firstOther" ></ion-input>
         </ion-item>
         <ion-item>
 
@@ -56,7 +56,7 @@
         <button ion-button icon-start block color="dark" tappable  type="submit" [disabled]="!incomeForm.valid">
             <ion-icon name="folder-open"></ion-icon>
             Guardar
-          </button>  
+          </button>
          </form>
          <div text-right>
             <button ion-button icon-start  color="dark" tappable (click)="swipeNext()"   [disabled]="next">
@@ -67,7 +67,7 @@
         </ion-slide>
 
 
-        <ion-slide>         
+        <ion-slide>
       <h2>Paso 2</h2>
       <hr>
     <h3>Egresos</h3>
@@ -79,11 +79,11 @@
       </ion-label>
       <ion-input type="number" formControlName="{{item['controlName']}}" ></ion-input>
       </ion-item>
-     
+
       <button ion-button icon-start block color="dark" tappable  type="submit" [disabled]="!expenseForm.valid">
           <ion-icon name="folder-open"></ion-icon>
           Guardar
-        </button>  
+        </button>
        </form>
        <div text-right>
           <button ion-button icon-start  color="dark" tappable (click)="swipeNext()"   [disabled]="next">
@@ -104,11 +104,11 @@
             </ion-label>
             <ion-input type="number" formControlName="{{item['controlName']}}" ></ion-input>
             </ion-item>
-           
+
             <button ion-button icon-start block color="dark" tappable  type="submit" [disabled]="!anualExpenseForm.valid">
                 <ion-icon name="folder-open"></ion-icon>
                 Guardar
-              </button>  
+              </button>
              </form>
              <div text-right>
                 <button ion-button icon-start  color="dark" tappable (click)="swipeNext()"   [disabled]="next">
@@ -129,21 +129,22 @@
             </ion-label>
             <ion-input type="number" formControlName="{{item['controlName']}}" ></ion-input>
             </ion-item>
-           
+
             <button ion-button icon-start block color="dark" tappable  type="submit" [disabled]="!otherExpenseForm.valid">
                 <ion-icon name="folder-open"></ion-icon>
                 Guardar
-              </button>  
+              </button>
              </form>
              <div text-right>
-                <button ion-button icon-start  color="dark" tappable (click)="swipeNext()"   [disabled]="next">
+                <button ion-button icon-start  color="dark" tappable (click)="swipeNext(true)"   [disabled]="next">
                     <ion-icon name="walk"></ion-icon>
                     Siguiente
                   </button>
             </div>
         </ion-slide>
         <ion-slide>
-            <h2>Resumen</h2>       
+            <h2>Resumen</h2>
+
             <ion-list>
                 <ion-list-header>
                   Ingresos Totales
@@ -151,16 +152,16 @@
                 <ion-item>
                   <ion-label inline>
                     <ion-icon name="logo-usd" item-start class="text-primary"></ion-icon>
-                     1231313
+                     {{totalIncomes | currency}}
                   </ion-label>
-                </ion-item>                
+                </ion-item>
                 <ion-list-header>
                     Egresos Totales
                   </ion-list-header>
                   <ion-item>
                       <ion-label inline>
                         <ion-icon name="trending-down" item-start class="text-primary"></ion-icon>
-                         1231313
+                         {{totalExpenses | currency }}
                       </ion-label>
                     </ion-item>
               </ion-list>
