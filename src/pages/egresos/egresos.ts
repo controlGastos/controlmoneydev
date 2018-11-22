@@ -17,7 +17,6 @@ export class EgresosPage {
   private uid: string;
   today:string = new Date().toISOString();
   services  :object[];
-  
   public expenseForm: FormGroup;
 
   constructor(public navCtrl: NavController,
@@ -28,6 +27,7 @@ export class EgresosPage {
      private nativeStorage: NativeStorage,
      private toastCtrl: ToastController,
      private loadinCtrl : LoadingController) {
+
 
       this.nativeStorage.getItem('uid').then(res=>
         {

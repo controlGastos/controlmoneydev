@@ -2,5 +2,13 @@ page-home {
     .item.item-input {
         background-color: transparent;
     }
-    
+    .badge{
+        position: absolute;
+        left: 25px;
+        top: 5px;
+        // width: 20px;
+        // height: 20px;
+        
+        text-align: left!important;
+    }
 }

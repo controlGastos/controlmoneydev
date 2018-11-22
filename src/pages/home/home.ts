@@ -1,3 +1,4 @@
+import { FcmProvider } from './../../providers/fcm/fcm';
 
 import { LoadingController } from 'ionic-angular';
 import { AngularFirestore } from 'angularfire2/firestore';
@@ -7,7 +8,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
 import { NavController, Slides, ToastController,NavParams } from 'ionic-angular';
-
+import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'page-home',
@@ -19,6 +20,7 @@ export class HomePage {
   totalIncomes: number;
   totalExpenses:number;
   estimatedSaving:number;
+  badge: number = 0 ;
     constructor(public navCtrl: NavController,
                private afs : AngularFireAuth,
                public navParams: NavParams,
@@ -26,7 +28,8 @@ export class HomePage {
                private afst: AngularFirestore,
                private nativeStorage: NativeStorage,
                private toastCtrl: ToastController,
-               private loadinCtrl : LoadingController) {
+               private loadinCtrl : LoadingController,
+               public fcm: FcmProvider) {
 
                 this.nativeStorage.getItem('uid').then(res=>
                   {
@@ -42,7 +45,17 @@ export class HomePage {
   }
 
   ionViewDidLoad(){
-   
+   this.fcm.getToken();
+   this.fcm.listenToNotificactions().pipe(
+     tap(msg =>{
+       this.badge += 1 ;
+       const toast = this.toastCtrl.create({
+         message: msg.body,
+         duration:3000
+       });
+       toast.present();
+     })
+   ).subscribe()
   }
 
   incomePost(){
@@ -112,6 +125,10 @@ export class HomePage {
         })
 
 
+    }
+
+    clearBadge(){
+      this.badge = null;
     }
 
 }

@@ -24,6 +24,7 @@ export class OtrosEgresosPage {
 
   private uid: string;
   otherServices:object[];  
+  today:string = new Date().toISOString();
   public otherExpenseForm: FormGroup;
   totalIncomes: number;
   totalExpenses:number;
@@ -51,7 +52,13 @@ export class OtrosEgresosPage {
                     clothing:[],
                     feeding:[],
                     transport:[],
-                    education:[]
+                    education:[],
+                      datePrepaidHealth:[],
+                      dateEntertainment:[],
+                      dateClothing:[],
+                      dateFeeding:[],
+                      dateTransport:[],
+                      dateEducation:[],
                   });
   }
 
@@ -59,19 +66,29 @@ export class OtrosEgresosPage {
     
   this.otherServices = [
 
-    {title:"Salud Prepagada",icon:'medkit', controlName:'prepaidHealth'},
-    {title:"Entretenimiento",icon:'logo-playstation', controlName:'entertainment'},
-    {title:"Ropa",icon:'shirt', controlName:'clothing'},
-    {title:"Alimentacion",icon:'pizza', controlName:'feeding'},
-    {title:"Transporte",icon:'bus', controlName:'transport'},
-    {title:"Educacion",icon:'school', controlName:'education'}
+    {title:"Salud Prepagada",icon:'medkit', controlName:'prepaidHealth',controlName2:'datePrepaidHealth'},
+    {title:"Entretenimiento",icon:'logo-playstation', controlName:'entertainment',controlName2:'dateEntertainment'},
+    {title:"Ropa",icon:'shirt', controlName:'clothing',controlName2:'dateClothing'},
+    {title:"Alimentacion",icon:'pizza', controlName:'feeding',controlName2:'dateFeeding'},
+    {title:"Transporte",icon:'bus', controlName:'transport',controlName2:'dateTransport'},
+    {title:"Educacion",icon:'school', controlName:'education',controlName2:'dateEducation'}
   ];
     console.log('ionViewDidLoad OtrosEgresosPage');
   }
   otherExpensePost(){
 
     let dataExpense =  this.otherExpenseForm.value;
-    let expenseid = "otherExpense"+this.uid;
+    let expenseid = "otherExpense"+this.uid;    
+    let dateExpeneseId = 'dateOtherExpense'+this.uid;
+    var dates = {
+
+      datePrepaidHealth:dataExpense.datePrepaidHealth,      
+      dateEntertainment:dataExpense.dateEntertainment,
+      dateClothing:dataExpense.dateClothing,
+      dateFeeding:dataExpense.dateFeeding,
+      dateTransport:dataExpense.dateTransport,
+      dateEducation:dataExpense.dateEducation,
+    } 
     var docData =
     {
         prepaidHealth:parseInt(dataExpense.prepaidHealth== null? 0 :dataExpense.prepaidHealth),
@@ -91,12 +108,16 @@ export class OtrosEgresosPage {
 
     this.afst.collection('otherExpenses').doc(expenseid).set(docData).then(result=>
       {
-      console.log(result);
-      loading.dismiss();
-      this.otherExpenseForm.reset();
-      this.presentToast(" otros Egresos  Guardados.");
-      })
-      this.getExpenses();
+        this.afst.collection('dateOtherExpenese').doc(dateExpeneseId).set(dates).then(()=>{
+          console.log(result);
+          loading.dismiss();
+          this.otherExpenseForm.reset();
+          this.presentToast(" otros Egresos  Guardados.");
+          })
+          this.getExpenses();
+        })
+
+     
   };
 
   async getExpenses(){

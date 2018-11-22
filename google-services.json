@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "737506578122",
+    "firebase_url": "https://controlmoney-ee03c.firebaseio.com",
+    "project_id": "controlmoney-ee03c",
+    "storage_bucket": "controlmoney-ee03c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:737506578122:android:f3d47c55c420f9ff",
+        "android_client_info": {
+          "package_name": "com.Moneycontrol.co"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "737506578122-irhs57e4l3d5rjecf3h8hd8n39hhr1di.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.Moneycontrol.co",
+            "certificate_hash": "0cfd49a25401fafe7ed5933833c82c847f28ff6f"
+          }
+        },
+        {
+          "client_id": "737506578122-h22rardfq2uvlscobar3cv0ovl88ecnj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDHy3uMvxsIZuSvmDum1pDxxHOsBTM5NZc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "737506578122-h22rardfq2uvlscobar3cv0ovl88ecnj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

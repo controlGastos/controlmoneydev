@@ -18,6 +18,9 @@ import { RegisterPage } from '../pages/register/register';
 import { FIREBASE_CONFIG } from './app.firebase.config';
 import { AhorroPage } from '../pages/ahorro/ahorro';
 import { OtrosEgresosPage } from '../pages/otros-egresos/otros-egresos';
+import { AngularFireMessagingModule } from '@angular/fire/messaging';
+import { FcmProvider } from '../providers/fcm/fcm';
+import {Firebase} from '@ionic-native/firebase';
 
 
 
@@ -35,10 +38,13 @@ import { OtrosEgresosPage } from '../pages/otros-egresos/otros-egresos';
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      monthNames:  ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo',' Junio','Julio','Agosto', 'Septiembre','Octubre','Noviembre','Diciembre']
+    }),
     AngularFireModule.initializeApp(FIREBASE_CONFIG),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireMessagingModule
 
   ],
   bootstrap: [IonicApp],
@@ -57,7 +63,9 @@ import { OtrosEgresosPage } from '../pages/otros-egresos/otros-egresos';
     StatusBar,
     SplashScreen,
     NativeStorage,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    FcmProvider,
+    Firebase
   ]
 })
 export class AppModule {}
