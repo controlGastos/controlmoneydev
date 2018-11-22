@@ -23,6 +23,7 @@ import { NavController, Slides, ToastController,NavParams } from 'ionic-angular'
 })
 export class EgresosAnualesPage {
 
+  today:string = new Date().toISOString();
   private uid: string;
   anualServices:object[];
   public anualExpenseForm: FormGroup;
@@ -46,23 +47,35 @@ export class EgresosAnualesPage {
                     propertyTax:[],
                     carTax:[],
                     soat:[],
-                    insurance:[]
+                    insurance:[],
+                    datePropertyTax:[],
+                    dateCarTax:[],
+                    dateSoat:[],
+                    dateInsurance:[]
                   });
   }
 
   ionViewDidLoad() {
     this.anualServices = [
-      {title:"Imp. Predial",icon:'home', controlName:'propertyTax'},
-      {title:"Imp. Vehicular",icon:'car', controlName:'carTax'},
-      {title:"SOAT",icon:'card', controlName:'soat'},
-      {title:"Seg. todo riesgo",icon:'help-buoy', controlName:'insurance'}
+      {title:"Imp. Predial",icon:'home', controlName:'propertyTax',controlName2:'datePropertyTax'},
+      {title:"Imp. Vehicular",icon:'car', controlName:'carTax',controlName2:'dateCarTax'},
+      {title:"SOAT",icon:'card', controlName:'soat',controlName2:'dateSoat'},
+      {title:"Seg. todo riesgo",icon:'help-buoy', controlName:'insurance',controlName2:'dateInsurance'}
     ];
     console.log('ionViewDidLoad EgresosAnualesPage');
   }
   anualExpensePost(){
 
     let dataExpense =  this.anualExpenseForm.value;
-    let expenseid = "anualExpense"+this.uid;
+    let expenseid = "anualExpense"+this.uid;    
+    let dateExpeneseId = 'AnualDateExpense'+this.uid;
+    var dates = {
+
+      datePropertyTax:dataExpense.datePropertyTax,      
+      dateCarTax:dataExpense.dateCarTax,
+      dateSoat:dataExpense.dateSoat,
+      dateInsurance:dataExpense.dateInsurance
+    }
     var docData =
     {
 
@@ -81,11 +94,15 @@ export class EgresosAnualesPage {
 
     this.afst.collection('anualExpenses').doc(expenseid).set(docData).then(result=>
       {
-      console.log(result);
-      loading.dismiss();
-      this.anualExpenseForm.reset();      
-      this.navCtrl.setRoot(OtrosEgresosPage);
-      this.presentToast("Egresos anuales Guardados.");
+
+        this.afst.collection('dateAnualExpenese').doc(dateExpeneseId).set(dates).then(()=>{{
+          console.log(result);
+          loading.dismiss();
+          this.anualExpenseForm.reset();      
+          this.navCtrl.setRoot(OtrosEgresosPage);
+          this.presentToast("Egresos anuales Guardados.");
+        }})
+     
       })
   };
   presentToast(msj : string){

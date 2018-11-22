@@ -15,7 +15,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class EgresosPage {
 
   private uid: string;
-  
+  today:string = new Date().toISOString();
   services  :object[];
   
   public expenseForm: FormGroup;
@@ -40,18 +40,24 @@ export class EgresosPage {
           homePhone:[],
           cellPhone:[],
           tv:[],
-          combos:[]
+          combos:[],
+          dateWater:[],
+          dateElectricity:[],
+          dateHomePhone:[],
+          dateCellPhone:[],
+          dateTv:[],
+          dateCombos:[],
         });
   }
 
   ionViewDidLoad() {
     this.services = [
-      {title:"Agua",icon:'water', controlName:'water'},
-      {title:"Electricidad",icon:'bulb', controlName:'electricity'},
-      {title:"Telefonia",icon:'call', controlName:'homePhone'},
-      {title:"Celular",icon:'phone-portrait', controlName:'cellPhone'},
-      {title:"Televisión",icon:'desktop', controlName:'tv'},
-      {title:"Combos",icon:'logo-buffer', controlName:'combos'},
+      {title:"Agua",icon:'water', controlName:'water',controlName2:'dateWater'},
+      {title:"Electricidad",icon:'bulb', controlName:'electricity',controlName2:'dateElectricity'},
+      {title:"Telefonia",icon:'call', controlName:'homePhone',controlName2:'dateHomePhone'},
+      {title:"Celular",icon:'phone-portrait', controlName:'cellPhone',controlName2:'dateCellPhone'},
+      {title:"Televisión",icon:'desktop', controlName:'tv',controlName2:'dateTv'},
+      {title:"Combos",icon:'logo-buffer', controlName:'combos',controlName2:'dateCombos'},
     ];
     console.log('ionViewDidLoad EgresosPage');
   }
@@ -60,6 +66,16 @@ export class EgresosPage {
 
     let dataExpense =  this.expenseForm.value;
     let expenseid = "expense"+this.uid;
+    let dateExpeneseId = 'dateExpense'+this.uid;
+    var dates = {
+
+      dateWater:dataExpense.dateWater,      
+      dateElectricity:dataExpense.dateElectricity,
+      dateHomePhone:dataExpense.dateHomePhone,
+      dateCellPhone:dataExpense.dateCellPhone,
+      dateTv:dataExpense.dateTv,
+      dateCombos:dataExpense.dateCombos,
+    } 
     var docData =
     {
       water:parseInt(dataExpense.water  == null? 0 : dataExpense.water),
@@ -77,13 +93,18 @@ export class EgresosPage {
       })
     loading.present();
 
+
     this.afst.collection('expenses').doc(expenseid).set(docData).then(result=>
       {
-      console.log(result);
-      loading.dismiss();
-      this.expenseForm.reset();
-      this.navCtrl.setRoot(EgresosAnualesPage);
-      this.presentToast("Egresos Guardados.");
+      this.afst.collection('dateExpenese').doc(dateExpeneseId).set(dates).then(()=>{
+
+        console.log(result);
+        loading.dismiss();
+        this.expenseForm.reset();
+        this.navCtrl.setRoot(EgresosAnualesPage);
+        this.presentToast("Egresos Guardados.");
+      })    
+
       })
   };
   

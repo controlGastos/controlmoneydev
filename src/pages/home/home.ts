@@ -106,7 +106,10 @@ export class HomePage {
           
           loading.dismiss();
 
-        },err=>alert(err))
+        },err=> {
+          loading.dismiss();
+          alert(err)
+        })
 
 
     }

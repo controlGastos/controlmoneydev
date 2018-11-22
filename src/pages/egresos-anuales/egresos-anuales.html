@@ -18,13 +18,23 @@
 
 <ion-content padding>
     <form [formGroup]="anualExpenseForm" (ngSubmit)="anualExpensePost()" class="list-form">
-        <ion-item *ngFor="let item of anualServices" >
+       <ion-list *ngFor="let item of anualServices" >
+      <ion-item >
           <ion-label inline>
           <ion-icon name="{{item['icon']}}" item-start class="text-primary"></ion-icon>
            {{item["title"]}}
         </ion-label>
         <ion-input type="number" formControlName="{{item['controlName']}}" ></ion-input>
         </ion-item>
+        <ion-item>
+            <ion-label inline>
+                <ion-icon name="calendar" item-start ></ion-icon>
+                 Fecha de Pago
+              </ion-label>
+              <ion-datetime  min="{{today}}"  max="2020-01-01" displayFormat="M/D/YYYY" formControlName="{{item['controlName2']}}"></ion-datetime>
+             
+        </ion-item>
+      </ion-list>
 
         <button ion-button icon-start block color="dark" tappable  type="submit" [disabled]="!anualExpenseForm.valid">
             <ion-icon name="folder-open"></ion-icon>

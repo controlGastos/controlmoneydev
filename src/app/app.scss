@@ -301,7 +301,7 @@ ion-navbar.no-border {
 
 // style for auth pages
 .auth-page {
-  background-color:color($colors,primary);
+  background-color:$background-color;
   &::after {
     content: "";
     background: url("../assets/img/bg.jpg") no-repeat;
