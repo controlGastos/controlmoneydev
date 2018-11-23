@@ -8,6 +8,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Component, ViewChild } from '@angular/core';
 import { NavController, Slides, ToastController,NavParams } from 'ionic-angular';
+import { NotificationsSettingsPage } from '../notifications-settings/notifications-settings';
 
 /**
  * Generated class for the OtrosEgresosPage page.
@@ -161,6 +162,6 @@ export class OtrosEgresosPage {
     toast.present();
   }
   next(){
-    this.navCtrl.setRoot(AhorroPage);
+    this.navCtrl.setRoot(NotificationsSettingsPage);
   }
 }

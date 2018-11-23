@@ -1,3 +1,4 @@
+import { NotificationsSettingsPage } from './../pages/notifications-settings/notifications-settings';
 import { EgresosAnualesPage } from './../pages/egresos-anuales/egresos-anuales';
 import { EgresosPage } from './../pages/egresos/egresos';
 import { IncomesPage } from './../pages/incomes/incomes';
@@ -34,7 +35,8 @@ import {Firebase} from '@ionic-native/firebase';
     AhorroPage,
     EgresosPage,
     EgresosAnualesPage,
-    OtrosEgresosPage
+    OtrosEgresosPage,
+    NotificationsSettingsPage
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,8 @@ import {Firebase} from '@ionic-native/firebase';
     AhorroPage,
     EgresosPage,
     EgresosAnualesPage,
-    OtrosEgresosPage
+    OtrosEgresosPage,
+    NotificationsSettingsPage
   ],
   providers: [
     StatusBar,

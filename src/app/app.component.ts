@@ -1,3 +1,4 @@
+import { NotificationsSettingsPage } from './../pages/notifications-settings/notifications-settings';
 import { OtrosEgresosPage } from './../pages/otros-egresos/otros-egresos';
 import { EgresosAnualesPage } from './../pages/egresos-anuales/egresos-anuales';
 import { EgresosPage } from './../pages/egresos/egresos';
@@ -26,7 +27,8 @@ export class MyApp {
       { title: 'Ahorro', component:AhorroPage,icon:"filing"  },
       { title: 'Egresos', component:EgresosPage,icon:"trending-down"  },
       { title: 'Egresos Anuales', component:EgresosAnualesPage,icon:"card"  },      
-      { title: 'Otros Egresos', component:OtrosEgresosPage,icon:"medkit"  }
+      { title: 'Otros Egresos', component:OtrosEgresosPage,icon:"medkit"  },    
+      { title: 'Notificaciones', component:NotificationsSettingsPage,icon:"notifications"  }
       
     ];
 
